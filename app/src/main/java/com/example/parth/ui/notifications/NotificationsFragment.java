@@ -17,6 +17,7 @@ import com.example.parth.R;
 import com.example.parth.aboutus;
 import com.example.parth.databinding.FragmentNotificationsBinding;
 import com.example.parth.setting;
+import com.example.parth.userprofile;
 import com.google.firebase.database.collection.BuildConfig;
 
 public class NotificationsFragment extends Fragment {
@@ -51,6 +52,16 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
+        CardView c3 = root.findViewById(R.id.a_profile);
+        c3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), userprofile.class);
+                startActivity(i);
+            }
+        });
+
+
         CardView c1 = root.findViewById(R.id.a_about);
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +71,7 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
+
         CardView c2 = root.findViewById(R.id.setting);
         c2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +80,8 @@ public class NotificationsFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+
 
 
         //final TextView textView = binding.textNotifications;

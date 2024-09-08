@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".register">
+    tools:context=".signup">
 
 
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text1"
         android:layout_marginTop="90dp"
-        android:hint="Enter Username"
+        android:hint="Enter Name"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/button"
@@ -50,20 +50,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit1"
-        android:hint="Enter Password"
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/button"
         android:padding="10dp"
-        android:id="@+id/edit2">
+        android:id="@+id/edit2"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit2"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:id="@+id/edit3">
     </EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit3"
+        android:hint="Enter Number"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:id="@+id/edit4"/>
+
+
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button1"
-        android:layout_below="@id/edit2"
+        android:layout_below="@id/edit4"
         android:background="@drawable/button"
         android:text="Register"
         android:layout_marginTop="20dp"

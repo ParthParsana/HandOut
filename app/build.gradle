@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
+
 }
 
 android {
@@ -33,7 +34,6 @@ android {
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
@@ -42,10 +42,15 @@ dependencies {
     implementation libs.lifecycle.viewmodel.ktx
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
-    implementation libs.firebase.auth
-    implementation libs.firebase.database
+    implementation ('com.google.firebase:firebase-firestore') {
+        exclude group: 'com.google.firebase', module: 'firebase-common'
+    }
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-database'
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation 'com.google.firebase:firebase-database:21.0.0'
+
+    implementation platform('com.google.firebase:firebase-bom:33.0.0')
 }
+

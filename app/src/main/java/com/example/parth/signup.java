@@ -9,104 +9,106 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class signup extends AppCompatActivity {
 
-    public TextView t1;
-    EditText email,password;
+    TextView t1;
+    EditText signupemail, signuppassword, signupname, signupnumber;
     Button register;
-    FirebaseAuth mAuth;
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-
-            Intent i=new Intent(signup.this, MainActivity.class);
-            startActivity(i);
-            finish();
-
-        }
-    }
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
 
-        t1=findViewById(R.id.text4);
-        mAuth=FirebaseAuth.getInstance();
-        email=findViewById(R.id.edit1);
-        password=findViewById(R.id.edit2);
-        register=findViewById(R.id.button1);
-
-        t1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(signup.this, login.class);
-                startActivity(i);
-            }
-        });
+        t1 = findViewById(R.id.text4);
+        signupname = findViewById(R.id.edit1);
+        signupemail = findViewById(R.id.edit2);
+        signuppassword = findViewById(R.id.edit3);
+        signupnumber = findViewById(R.id.edit4);
+        register = findViewById(R.id.button1);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String emails = email.getText().toString();
-                String passwords = password.getText().toString();
-
-                if(emails.isEmpty())
-                {
-                    Toast.makeText(signup.this,"please enter email",Toast.LENGTH_SHORT).show();
-                    return;
+                if (validateInputs()) {
+                    saveUserToDatabase();
                 }
-                if(passwords.isEmpty())
-                {
-                    Toast.makeText(signup.this,"please enter password",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                mAuth.createUserWithEmailAndPassword(emails,passwords)
-                        .addOnCompleteListener (new OnCompleteListener<AuthResult>() {
-
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(signup.this, "Account Created",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent i=new Intent(signup.this,login.class);
-                                    startActivity(i);
-                                    finish();
-
-                                } else {
-
-
-                                    Toast.makeText(signup.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-                        });
-
-
             }
         });
 
+        t1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(signup.this, login.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    // Method to validate the inputs before saving to Firebase
+    private boolean validateInputs() {
+        String name = signupname.getText().toString().trim();
+        String email = signupemail.getText().toString().trim();
+        String password = signuppassword.getText().toString().trim();
+        String number = signupnumber.getText().toString().trim();
+
+        if (name.isEmpty()) {
+            signupname.setError("Name cannot be empty");
+            signupname.requestFocus();
+            return false;
+        }
+
+        if (email.isEmpty()) {
+            signupemail.setError("Email cannot be empty");
+            signupemail.requestFocus();
+            return false;
+        }
+
+        if (password.isEmpty()) {
+            signuppassword.setError("Password cannot be empty");
+            signuppassword.requestFocus();
+            return false;
+        }
+
+        if (number.isEmpty()) {
+            signupnumber.setError("Number cannot be empty");
+            signupnumber.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    // Method to save user information to Firebase Realtime Database
+    private void saveUserToDatabase() {
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("users");
+
+        String name = signupname.getText().toString().trim();
+        String email = signupemail.getText().toString().trim();
+        String password = signuppassword.getText().toString().trim();
+        String number = signupnumber.getText().toString().trim();
+
+        // Use email as the unique key (replace '.' with ',' to avoid issues)
+        //String modifiedEmail = email.replace(".", ",");
+
+        helperclass helperclass = new helperclass(name, email, password, number);
+        reference.child(name).setValue(helperclass).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(signup.this, "You have signed up successfully", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(signup.this, login.class);
+                startActivity(i);
+                finish();
+            } else {
+                Toast.makeText(signup.this, "Failed to sign up. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
