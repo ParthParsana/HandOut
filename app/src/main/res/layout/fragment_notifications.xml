@@ -140,7 +140,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/a_logout"
+            android:id="@+id/version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp"

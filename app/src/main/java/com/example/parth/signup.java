@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
@@ -52,7 +52,6 @@ public class signup extends AppCompatActivity {
         });
     }
 
-    // Method to validate the inputs before saving to Firebase
     private boolean validateInputs() {
         String name = signupname.getText().toString().trim();
         String email = signupemail.getText().toString().trim();
@@ -96,19 +95,28 @@ public class signup extends AppCompatActivity {
         String password = signuppassword.getText().toString().trim();
         String number = signupnumber.getText().toString().trim();
 
-        // Use email as the unique key (replace '.' with ',' to avoid issues)
-        //String modifiedEmail = email.replace(".", ",");
+        // Generate a unique key for the user (e.g., using push())
+        String userId = reference.push().getKey();
 
+        // Create a new user object
         helperclass helperclass = new helperclass(name, email, password, number);
-        reference.child(name).setValue(helperclass).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(signup.this, "You have signed up successfully", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(signup.this, login.class);
-                startActivity(i);
-                finish();
-            } else {
-                Toast.makeText(signup.this, "Failed to sign up. Please try again.", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        if (userId != null) {
+            reference.child(userId).setValue(helperclass).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(signup.this, "Signup successful!", Toast.LENGTH_SHORT).show();
+
+                    // Set the userId in UserSession Singleton
+                    UserSession.getInstance().setUserId(userId);
+
+                    // Redirect to login
+                    Intent i = new Intent(signup.this, login.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Toast.makeText(signup.this, "Failed to sign up. Please try again.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

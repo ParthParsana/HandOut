@@ -1,51 +1,50 @@
 package com.example.parth;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.content.SharedPreferences;
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class setting extends AppCompatActivity {
 
-    TextView logout;
+    CardView logoutButton;
     SharedPreferences sharedPreferences;
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String LOGIN_KEY = "loginKey";
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_setting);
 
-        logout = findViewById(R.id.logout);
+        logoutButton = findViewById(R.id.a_logout);
 
-        sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        // Handle logout button click
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Clear login state
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LOGIN_KEY, false);
-                editor.apply();
-
-                // Redirect to Login activity
-                Intent intent = new Intent(setting.this, login.class);
-                startActivity(intent);
-                finish();  // Close MainActivity
+                logout();
             }
         });
+    }
 
+    private void logout() {
+        // Clear the login state from SharedPreferences
+        editor.clear();
+        editor.apply();
+
+        // Redirect to login activity
+        Intent intent = new Intent(setting.this, login.class);
+        startActivity(intent);
+        finish(); // Close the current activity
     }
 }
