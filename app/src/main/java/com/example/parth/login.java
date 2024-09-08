@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class login extends AppCompatActivity {
 
     EditText loginemail, loginpassword;
     Button loginbtn;
+    TextView signupLink;
     DatabaseReference reference;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -34,6 +36,7 @@ public class login extends AppCompatActivity {
         loginemail = findViewById(R.id.edit1);
         loginpassword = findViewById(R.id.edit2);
         loginbtn = findViewById(R.id.button1);
+        signupLink = findViewById(R.id.text4);
 
         reference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -55,6 +58,14 @@ public class login extends AppCompatActivity {
                 checkUser();
             }
         });
+
+        signupLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(login.this, signup.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkUser() {
@@ -71,7 +82,6 @@ public class login extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    // Get userId
                     String userId = snapshot.getChildren().iterator().next().getKey();
                     String passwordFromDb = snapshot.child(userId).child("password").getValue(String.class);
 
@@ -79,12 +89,10 @@ public class login extends AppCompatActivity {
                         // Save login state to SharedPreferences
                         editor.putBoolean("isLoggedIn", true);
                         editor.putString("userId", userId);
-                        editor.apply(); // Apply changes
+                        editor.apply();
 
-                        // Fetch user profile data and set it in the Singleton
                         fetchUserProfileData(userId);
 
-                        // Redirect to MainActivity
                         Intent intent = new Intent(login.this, MainActivity.class);
                         startActivity(intent);
                         finish();
