@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aboutus"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="About Handout"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/text_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_1"
+            android:layout_margin="10dp"
+            android:textSize="25dp"
+            android:text="Handout is a versatile application that helps users find food, rental homes, and other services. The app is designed to make it easy for users to search and discover a variety of options for their needs.">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_2"
+            android:layout_margin="10dp"
+            android:textSize="25dp"
+            android:text="For food delivery, Handout allows users to browse through a range of restaurants and cafes in their area, filter by cuisine and price range, and read reviews from other customers. Users can also place orders directly through the app.">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/text_4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text3"
+            android:layout_margin="10dp"
+            android:textSize="25dp"
+            android:text="For rental homes, Handout partners with trusted real estate agents and property managers to offer a variety of options for users. Users can search for homes based on their location, budget, and other preferences, and communicate directly with property managers through the app.">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/text_5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_4"
+            android:layout_margin="10dp"
+            android:textSize="25dp"
+            android:text="In addition to food and rental homes, Handout also offers a range of other services, such as home cleaning, Plumbing , Electrician etc. Users can easily communicate with service providers through the app.">
+        </TextView>
+
+        <TextView
+            android:id="@+id/text_6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_5"
+            android:layout_margin="10dp"
+            android:textSize="25dp"
+            android:text="Overall, Handout is a valuable app for anyone looking for food, rental homes, or other services. It provides a convenient and reliable way to access a variety of options from trusted providers, all in one place. Whether you're hungry, looking for a new home, or need help with household tasks, Handout has got you covered.">
+        </TextView>
+
+    </RelativeLayout>
+
+</ScrollView>

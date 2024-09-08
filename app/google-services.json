@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "39427858866",
+    "firebase_url": "https://handout-09-default-rtdb.firebaseio.com",
+    "project_id": "handout-09",
+    "storage_bucket": "handout-09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39427858866:android:e6f819d51a51f30397c4ab",
+        "android_client_info": {
+          "package_name": "com.example.parth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTneuP5QonHorNOyu2Uaru9Rdug22oI1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39427858866:android:519f0df31abd463497c4ab",
+        "android_client_info": {
+          "package_name": "com.example.sdvsdfsc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTneuP5QonHorNOyu2Uaru9Rdug22oI1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

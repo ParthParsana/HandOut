@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setting">
+
+    <TextView
+        android:id="@+id/s_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Setting"
+        android:textSize="50dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp">
+    </TextView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/a_logout"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="20dp"
+        android:elevation="20dp"
+        app:cardCornerRadius="15dp"
+        android:layout_below="@id/s_text">
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="@color/red">
+        </TextView>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
