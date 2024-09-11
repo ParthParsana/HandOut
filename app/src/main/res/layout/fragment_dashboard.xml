@@ -34,7 +34,7 @@
             android:layout_below="@+id/allcategories">
 
             <androidx.cardview.widget.CardView
-
+               android:id="@+id/grocery"
                 android:layout_width="330dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="33dp"
@@ -63,7 +63,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/vegfruits"
                 android:layout_width="330dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="33dp"
@@ -92,7 +92,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/milkproguct"
                 android:layout_width="330dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="33dp"
@@ -121,7 +121,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/footware"
                 android:layout_width="330dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="33dp"
@@ -150,7 +150,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/stationary"
                 android:layout_width="330dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="33dp"
@@ -179,7 +179,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/electronics"
                 android:layout_width="330dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="33dp"
@@ -208,7 +208,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/toys"
                 android:layout_width="330dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="33dp"
